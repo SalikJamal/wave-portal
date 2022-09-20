@@ -24,11 +24,38 @@
   margin-top: 16px;
 }
 
+.waveBtns {
+  display: flex;
+  justify-content: space-between;
+}
+
 .waveButton {
   cursor: pointer;
   margin-top: 16px;
   padding: 8px;
   border: 0;
   border-radius: 5px;
-  
+  outline: none;
+  width: 47%;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  color: #FFFFFF;
+  background-color: rgb(37, 37, 37);
+  height: 50px;
+  font-size: 18px;
+}
+
+.messageBox {
+  background: #5b92a7;
+  animation: gradientBG 15s ease infinite;
+  color: #FFFFFF;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
 }

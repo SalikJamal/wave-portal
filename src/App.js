@@ -3,12 +3,15 @@ import { ethers } from 'ethers'
 import './App.css'
 import wavePortalABI from './utils/WavePortal.json'
 import moment from 'moment'
+import { CircularProgress } from '@mui/material'
 
 
 const App = () => {
 
     const [account, setAccount] = useState('')
     const [allWaves, setAllWaves] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [btnLoading, setBtnLoading] = useState(false)
 
     const wavePortalContractAddress = process.env.REACT_APP_WAVE_PORTAL_CONTRACT_ADDRESS
 
@@ -54,8 +57,6 @@ const App = () => {
 
             if(!ethereum) {
                 console.log('Make sure you have metamask!')
-            } else {
-                console.log('We have the ethereum provider', ethereum)
             }
 
         } catch(e) {
@@ -74,7 +75,6 @@ const App = () => {
             }
 
             const accounts = await ethereum.request({ method: "eth_requestAccounts" })
-            console.log("Connected", accounts[0])
             setAccount(accounts[0])
 
             await getAllWaves()
@@ -119,6 +119,17 @@ const App = () => {
 
     }
 
+    const renderWaves = () => {
+        allWaves.map((wave, index) => {
+            return (
+                <div key={index} style={{ backgroundColor: "#252525", marginTop: "16px", padding: "8px" }}>
+                    <div>Address: {wave.address}</div>
+                    <div>Time: {moment.unix(wave.timestamp).format('LLL')}</div>
+                    <div>Message: {wave.message}</div>
+                </div>
+            )
+        })
+    }
 
     useEffect(() => {
 
@@ -158,23 +169,19 @@ const App = () => {
             <div className='dataContainer'>
                 <div className='header'>👋 Hey there!</div>
                 <div className='bio'>
-                    <p>I'm Salik, and I like to code, and help people! Connect your Ethereum wallet and wave at me!</p>
+                    <p>I'm Salik Jamal, I like to code and help people. Connect your Ethereum wallet and wave at me.</p>
                 </div>
-                <button className='waveButton' onClick={() => wave("My name is Salik")}>Wave at Me</button>
-
-                {!account && (
-                    <button className='waveButton' onClick={connectWallet}>Connect Wallet</button>
-                )}
+                <textarea className='messageBox' rows='10' cols='50'></textarea>
                 
-                {allWaves.map((wave, index) => {
-                    return (
-                        <div key={index} style={{ backgroundColor: "#252525", marginTop: "16px", padding: "8px" }}>
-                            <div>Address: {wave.address}</div>
-                            <div>Time: {moment.unix(wave.timestamp).format('LLL')}</div>
-                            <div>Message: {wave.message}</div>
-                        </div>
-                    )
-                })}
+                <div className='waveBtns' style={{ justifyContent: account && 'center' }}>
+                    <button className='waveButton' onClick={() => wave("My name is Salik")} style={{ width: account && '100%' }}>Wave At Me</button>
+                    {!account && (
+                        <button className='waveButton' onClick={connectWallet}>Connect Wallet</button>
+                    )}
+                </div>
+
+                {!loading ? renderWaves() : 
+                <div className='loading'><CircularProgress /> </div>}
             </div>
 
         </div>
