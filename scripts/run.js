@@ -13,6 +13,7 @@ const main = async () => {
     let waveTxn1 = await waveContract.wave("This is wave #1")
     await waveTxn1.wait() // Wait for the transaction to be mined
 
+    await hre.ethers.provider.send("evm_increaseTime", [901]) // Increase time by 15 minutes and 5 seconds
     let waveTxn2 = await waveContract.wave("This is wave #2")
     await waveTxn2.wait() // Wait for the transaction to be mined
 

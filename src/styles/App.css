@@ -36,7 +36,7 @@
   border: 0;
   border-radius: 5px;
   outline: none;
-  width: 47%;
+  width: 100%;
   font-family: "Comic Sans MS", "Comic Sans", cursive;
   color: #FFFFFF;
   background-color: rgb(37, 37, 37);
@@ -45,7 +45,7 @@
 }
 
 .messageBox {
-  background: #5b92a7;
+  background: #3f4344;
   animation: gradientBG 15s ease infinite;
   color: #FFFFFF;
   font-family: "Comic Sans MS", "Comic Sans", cursive;
@@ -57,5 +57,34 @@
 .loading {
   display: flex;
   justify-content: center;
-  margin-top: 100px;
+  margin: 50px auto;
+}
+
+.wave-error {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+  margin-top: 10px;
+}
+
+
+.footer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px auto;
+}
+
+.linkedin-logo {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
+
+.footer-text {
+  color: white;
+  font-size: 1em;
+  font-weight: bold;
+  text-decoration: none;
 }
